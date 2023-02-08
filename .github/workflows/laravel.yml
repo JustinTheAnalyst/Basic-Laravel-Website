@@ -24,4 +24,4 @@ jobs:
         server: ftp.justinwebdev.co.nz
         username: justinwe
         password: 69mG28C[Mky@vT
-        server-dir: /public_html/dev/
+        server-dir: /public_html/portfolio/
