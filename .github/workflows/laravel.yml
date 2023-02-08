@@ -3,13 +3,6 @@ on:
     branches:
       - main
 
-env:
-  MYSQL_HOST: 127.0.0.1
-  MYSQL_PORT: 3306
-  MYSQL_DATABASE: justinwe_basic_website
-  MYSQL_USERNAME: justinwe_ubasic2
-  MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-
 name: 🚀 Deploy website on push
 jobs:
   web-deploy:
@@ -44,10 +37,6 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.1'
-
-    - name: Connect to database
-      run: |
-        mysql -h $MYSQL_HOST -P $MYSQL_PORT -u $MYSQL_USERNAME -p$MYSQL_PASSWORD -D MYSQL_DATABASE
 
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
