@@ -15,8 +15,8 @@ jobs:
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
-    # - name: Copy .env
-    #   run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+    - name: Copy .env
+      run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
     - name: Config Clearing
       run: php artisan config:clear
@@ -43,5 +43,5 @@ jobs:
       with:
         server: ftp.justinwebdev.co.nz
         username: justinwe
-        password: 69mG28C[Mky@vT
+        password: ${{ secrets.FTP_PASSWORD }}
         server-dir: /public_html/portfolio/
