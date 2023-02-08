@@ -4,8 +4,8 @@ on:
       - main
 
 env:
-  MYSQL_HOST: https://dana.cynethost.com
-  MYSQL_PORT: 2083
+  MYSQL_HOST: 127.0.0.1
+  MYSQL_PORT: 3306
   MYSQL_DATABASE: justinwe_basic_website
   MYSQL_USERNAME: justinwe_ubasic2
   MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
