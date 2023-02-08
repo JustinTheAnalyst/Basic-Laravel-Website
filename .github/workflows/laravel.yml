@@ -43,5 +43,5 @@ jobs:
       with:
         server: ftp.justinwebdev.co.nz
         username: justinwe
-        password: ${{ secrets.FTP_PASSWORD }}
+        password: 69mG28C[Mky@vT
         server-dir: /public_html/portfolio/
