@@ -38,11 +38,6 @@ jobs:
       with:
         php-version: '8.1'
 
-    - name: Create Database
-      run: 
-        mkdir -p database
-        touch database/database.mysql
-
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
