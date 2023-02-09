@@ -102,4 +102,29 @@ class PortfolioController extends Controller
             return redirect()->back()->with($notification);
         }
     }
+
+    public function DeletePortfolio($id){
+
+        $portfolio = Portfolio::findOrFail($id);
+        $img = $portfolio->portfolio_image;
+
+        if (file_exists($img)) {
+            unlink($img);
+        }
+        
+        Portfolio::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Portfolio image deleted successfully', 
+            'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function PortfolioDetails($id){
+
+        $portfolio = Portfolio::findOrFail($id);
+        return view('frontend.portfolio_details_page', compact('portfolio'));
+    }
 }
