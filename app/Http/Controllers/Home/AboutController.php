@@ -96,6 +96,60 @@ class AboutController extends Controller
             'alert-type' => 'success'
         );
         
+        return redirect()->route('all.multi.image')->with($notification);
+    }
+
+    public function AllMultiImage(){
+
+        $allMultiImage = MultiImage::all();
+        return view('admin.about_page.all_multiimage', compact('allMultiImage'));
+    }
+
+    public function EditMultiImage($id){
+
+        $multiImages = MultiImage::findOrFail($id);
+        return view('admin.about_page.edit_multi_image', compact('multiImages'));
+    }
+
+    public function UpdateMultiImage(Request $request){
+
+        $multi_image_id  = $request->id;
+
+        if($request->file('multi_image')){
+            $image = $request->file('multi_image');
+            $new_file_name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+
+            Image::make($image)->resize(220,220)->save('upload/multi/'.$new_file_name);
+
+            $save_url = 'upload/multi/'.$new_file_name;
+
+            MultiImage::findOrFail($multi_image_id)->update([
+                'multi_image' => $save_url,
+            ]);
+
+            $notification = array(
+                'message' => 'Multi image updated successfully', 
+                'alert-type' => 'success'
+            );
+        } 
+    
+        return redirect()->route('all.multi.image')->with($notification);
+    }
+
+    public function DeleteMultiImage($id){
+
+        $multi = MultiImage::findOrFail($id);
+        $img = $multi->multi_image;
+
+        unlink($img);
+
+        MultiImage::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Multi image deleted successfully', 
+            'alert-type' => 'success'
+        );
+
         return redirect()->back()->with($notification);
     }
 }
